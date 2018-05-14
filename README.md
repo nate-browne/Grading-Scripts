@@ -9,13 +9,15 @@ These scripts were born out of a necessity to automate part of the tedious task
 that is grading programming assignments for Rick Ord's CSE 30. Each one makes a
 small section of the process a bit easier. Feel free to clone this repository
 and perform a `git pull` every once in a while to keep up to date with the most
-recent changes made to each script/any new scripts added
+recent changes made to each script/any new scripts added.
 
 #### Setup/Usage
 
 To use these scripts, clone this directory into your home directory. That's
 actually it as far as setup goes (to do this, type `git clone https://github.com/nate-browne/Grading-Scripts.git`
-or you can download and unzip the folder into your home directory).
+or you can download and unzip the folder into your home directory). For some
+reason, the pi-clusters don't really like using git remote repositories, so use
+your ieng6 accounts to do the git stuff.
 
 To use them, either add the path to this directory into your PATH
 environment variable, or just use ./"name of the script" with the directory you
