@@ -22,6 +22,9 @@ stucount=0
 # Usage error message
 USAGE="USAGE: $0 <directory name>"
 
+# Go to the home directory
+cd ~
+
 # Make sure a directory was given from the command line
 if [ -z $1 ]; then
 

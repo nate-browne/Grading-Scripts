@@ -11,6 +11,15 @@ small section of the process a bit easier. Feel free to clone this repository
 and perform a `git pull` every once in a while to keep up to date with the most
 recent changes made to each script/any new scripts added
 
+#### Setup/Usage
+
+To use these scripts, clone this directory into your home directory. That's
+actually it.
+
+To use them, either add the path to your home directory into your PATH
+environment variable, or just use ./"name of the script" with the directory you
+want.
+
 #### Descriptions
 
 The first script `chco` (**ch**eck **co**mpilation), is used to check for

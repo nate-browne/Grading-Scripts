@@ -31,6 +31,9 @@ HELP_MESSAGE="-h to show help options"
 NO_PROMPT="-s to speedrun the grading and not prompt to print detailed
             results"
 
+# Go to the home directory
+cd ~
+
 # Parse command line options
 while getopts "sh" opt $@
 do
