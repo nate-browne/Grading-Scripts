@@ -1,6 +1,6 @@
 # The Grading Scripts
 
-### Making grading for CSE 30 easier since 2018
+## Making grading for CSE 30 easier since 2018
 
 
 #### Introduction

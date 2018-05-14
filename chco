@@ -6,12 +6,6 @@
 #
 # Grading script used to automate the process of checking for compilation
 # errors for Rick Ord's CSE 30.
-#
-# Use by putting this file in your current home directory (~) and by supplying a
-# grading directory name as a command line argument. To run the script, either
-# put the path to your home directory into your PATH environment variable and
-# type the name of the script followed by a directory name, or just use the
-# classic ./chco method. Either one works.
 
 # Used to check if anyone had errors
 numerrors=0
