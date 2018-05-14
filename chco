@@ -1,0 +1,99 @@
+#!/bin/bash
+# Author: Nate Browne
+# Date: May 14, 2018
+# Version: 2.0
+# Script Name: chco (CHeck COmpilation)
+#
+# Grading script used to automate the process of checking for compilation
+# errors for Rick Ord's CSE 30.
+#
+# Use by putting this file in your current home directory (~) and by supplying a
+# grading directory name as a command line argument. To run the script, either
+# put the path to your home directory into your PATH environment variable and
+# type the name of the script followed by a directory name, or just use the
+# classic ./chco method. Either one works.
+
+# Used to check if anyone had errors
+numerrors=0
+
+# Number of students in the directory to grade
+stucount=0
+
+# Usage error message
+USAGE="USAGE: $0 <directory name>"
+
+# Make sure a directory was given from the command line
+if [ -z $1 ]; then
+
+  echo
+  echo "ERROR: No directory given!"
+  echo $USAGE
+  exit 1
+fi
+
+# Verify that the given directory is valid
+if [ ! -d $1 ]; then
+
+  printf "\nERROR: directory \"%s\" does not exist!\n" $1
+  exit 1
+fi
+
+# Start the timer
+cd $1
+echo "Starting..."
+start=$(date +%s.%N)
+
+# Count how many students to check
+for stu in *
+do
+
+  stucount=$((stucount + 1))
+done
+
+# Initialize counter of current student
+currstu=0
+
+# Start checking for errors
+for stu in *
+do
+
+  # Increment current student count for printing
+  currstu=$((currstu + 1))
+
+  # Print current student
+  echo "Checking student $stu... (student #$currstu of $stucount)"
+
+  # Check their COMPILER.ERR file for errors
+  result=`cat $stu/COMPILER.ERR | wc -l`
+
+  # Handle case of student having compiler errors. Increment count -> print to
+  # grader
+  if [ $result -ne 0 ]; then
+
+    numerrors=$((numerrors + 1))
+    printf "Compiler errors for student: %s\n\n" $stu
+    cat $stu/COMPILER.ERR
+    echo
+    echo
+  fi
+done
+
+printf "Finished!\n\n"
+
+# Stop the timer
+end=$(date +%s.%N)
+
+# In case nobody has errors :)
+if [ $numerrors -eq 0 ]; then
+
+  echo "No errors!"
+else
+
+  echo "Number of students with compiler errors/warnings: $numerrors"
+fi
+
+# Calculate how long execution took
+elapsed=$(echo "$end - $start" | bc)
+
+# Report diagnostic output
+printf "Execution time: %.6f seconds\n" $elapsed

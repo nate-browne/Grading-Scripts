@@ -1,0 +1,199 @@
+#!/bin/bash
+# Author: Nate Browne
+# Date: May 14, 2018
+# Version: 2.0
+# Script Name: chcr (CHeck CoRrectness)
+#
+# Grading script used to help grade Rick Ord CSE 30 assignments for correctness.
+# Assists the grader by automating the process of looking at the files so that
+# at least a small section of grading will go by a bit faster.
+#
+# Use by putting this file in your current home directory (~) and by supplying a
+# grading directory name as a command line argument. Also has a -s option
+# (speedrun mode) (to never prompt about showing detailed results ). To run the
+# program, you can either put the current path to your home directory in your
+# PATH environment variable and just say chcr <directory>, or you could use the
+# classic ./chcr method. Either way works.
+
+# Define some color constants
+RED='\033[0;31m'
+NC='\033[0m'
+
+# Number of students in the directory to grade
+stucount=0
+
+# Initial showprompt boolean set to yes unless user specifies otherwise
+showprompt="y"
+
+# Usage error message
+USAGE="USAGE: $0 [OPTIONS] <directory name>"
+HELP_MESSAGE="-h to show help options"
+NO_PROMPT="-s to speedrun the grading and not prompt to print detailed
+            results"
+
+# Parse command line options
+while getopts "sh" opt $@
+do
+
+  case $opt in
+
+    # Handle the -h option (help flag)
+    h) echo
+       echo $USAGE
+       printf "\n\t"
+       echo "OPTIONS:"
+       printf "\t"
+       echo $HELP_MESSAGE
+       printf "\t"
+       echo $NO_PROMPT
+       exit 0;;
+
+    # Handle the muting prompt option
+    s) showprompt="n";;
+
+    # Handle invalid argument option
+   \?) echo
+       echo $USAGE
+       printf "\n\t"
+       echo "OPTIONS:"
+       printf "\t"
+       echo $HELP_MESSAGE
+       printf "\t"
+       echo $NO_PROMPT
+       exit 1;;
+  esac
+done
+
+# Grab last command line argument as directory to use
+shift $((OPTIND - 1))
+dir_name=$1
+
+# Make sure a directory was given from the command line
+if [ -z $dir_name ]; then
+
+  echo
+  echo -e "${RED}ERROR: No directory given!${NC}"
+  echo $USAGE
+  exit 1
+fi
+
+# Verify that the given directory is valid
+if [ ! -d $dir_name ]; then
+
+  echo
+  echo -e "${RED}ERROR: directory \"$dir_name\" does not exist!${NC}"
+  echo $USAGE
+  exit 1
+fi
+
+# Start the script up
+cd $dir_name
+echo "Starting..."
+
+# Count how many students to check
+for stu in *; do
+
+  stucount=$((stucount + 1))
+done
+
+# Initialize counter of current student
+currstu=0
+
+for stu in *
+do
+
+  # Increment current student count for printing
+  currstu=$((currstu + 1))
+
+  # Print current student
+  echo "Checking student $stu... (student #$currstu of $stucount)"
+
+  # Check if student made any mistakes
+  num=`less $stu/SUMMARY.RESULTS | grep -c "FAILED"`
+
+  # no mistakes made; prompt to print instead of automatically printing
+  if [ $num -eq 0 ]; then
+
+    echo -n "Student didn't fail any test cases!"
+    echo -n " Do you still want to see summary results? (y/n/q): "
+    read response
+    echo
+
+    if [ $response == "q" ]; then
+
+      echo "Exiting..."
+      exit 0
+
+    # Print summary results out
+    elif [ $response == "y" ]; then
+
+      echo "Showing summary results..."
+      sleep 0.40
+      less $stu/SUMMARY.RESULTS
+    else
+
+      # Don't show mistakes, but show milestone and EC results
+      echo "Showing Milestone, r4-r10, and EC results..."
+      sleep 0.40
+      less $stu/SUMMARY.RESULTS | grep "Milestone"
+      less $stu/SUMMARY.RESULTS | grep "r4"
+      less $stu/SUMMARY.RESULTS | grep "EC"
+    fi
+  else
+
+    # Print out summary results for failed cases
+    echo "Showing summary results for failed cases, Milestone, EC, and r4..."
+    sleep 0.40
+    less $stu/SUMMARY.RESULTS | grep "FAILED"
+    less $stu/SUMMARY.RESULTS | grep "Milestone"
+    less $stu/SUMMARY.RESULTS | grep "r4"
+    less $stu/SUMMARY.RESULTS | grep "EC"
+  fi
+
+  # Print detailed results (if needed)
+  if [ $showprompt == "y" ]; then
+
+    echo -n "Do you want to see the detailed results? (y/n/q): "
+    read response
+    echo
+
+    if [ $response == "q" ]; then
+
+      exit 0
+
+    elif [ $response == "y" ]; then
+
+      echo "Showing detailed results..."
+      sleep 0.40
+      less $stu/DETAILED.RESULTS
+    fi
+  fi
+
+  # Pause a bit to make it a little easier to read
+  if [ $showprompt == "n" ]; then
+
+    sleep 0.75
+  fi
+done
+
+echo "Done!"
+
+# Ask if we want to start up gvim
+echo -n "Open the unit test files and assembly files in gvim? (y/n): "
+read response
+echo
+
+if [ $response == "y" ]; then
+
+  echo "Opening files..."
+  gview -p cs30x*/test*.c
+  gview -p cs30x*/*.s
+
+  echo -e "${RED}Don't forget to grade the other .c files as well!${NC}"
+else
+
+  echo -e "${RED}Don't forget to grade the files for style!${NC}"
+fi
+
+echo "Exiting..."
+exit 0
