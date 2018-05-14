@@ -14,11 +14,14 @@ recent changes made to each script/any new scripts added
 #### Setup/Usage
 
 To use these scripts, clone this directory into your home directory. That's
-actually it.
+actually it as far as setup goes (to do this, type `git clone https://github.com/nate-browne/Grading-Scripts.git`
+or you can download and unzip the folder into your home directory).
 
-To use them, either add the path to your home directory into your PATH
+To use them, either add the path to this directory into your PATH
 environment variable, or just use ./"name of the script" with the directory you
-want.
+want. For reference, this can be done once from the command line by typing the
+following: `echo "export PATH=$PATH:\"/home/linux/ieng6/cs30x/cs30xZZ/Grading-Scripts\"" >> ~/.bashrc`
+where you replace the "ZZ" with your cs30 ID numbers.
 
 #### Descriptions
 
@@ -41,7 +44,6 @@ mind that this script ***cannot be run on the pi-clusters***.
 Hopefully this trio of scripts makes the grading process for CSE 30 a bit easier
 :) Happy grading!
 
-#### Pull Requests
-
-This directory will be maintained (and added to), but pull requests are
-(probably) not gonna get considered. Sorry!
+This directory will be maintained, and new scripts will be added as
+needed/desired, so if there's anything you'd want to see in these scripts/other
+scripts just let me know!
