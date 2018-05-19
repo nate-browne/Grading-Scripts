@@ -21,9 +21,12 @@ your ieng6 accounts to do the git stuff.
 
 To use them, either add the path to this directory into your PATH
 environment variable, or just use ./"name of the script" with the directory you
-want. For reference, this can be done once from the command line by typing the
-following: `echo "export PATH=$PATH:\"/home/linux/ieng6/cs30x/cs30xZZ/Grading-Scripts\"" >> ~/.bashrc`
-where you replace the "ZZ" with your cs30 ID numbers.
+want while you're inside of this directory. For reference, adding to the path
+variable can be done once from the command line by typing the following command
+in: `echo "export PATH=$PATH:\"/home/linux/ieng6/cs30x/cs30xZZ/Grading-Scripts\"" >> ~/.bashrc` where you replace the "ZZ" with your cs30 ID numbers.
+
+If you add the script to your path, you can run it from anywhere by just typing
+the name in. I find this more convenient for myself, personally.
 
 #### Descriptions
 
