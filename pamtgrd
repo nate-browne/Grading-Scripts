@@ -1,0 +1,61 @@
+#!/bin/bash
+# Author: Nate Browne
+# Date: 27 May 2018
+# Version: 1.0
+# Script Name: pamtgrd
+#
+# Grading script used to automate the process of checking for compilation
+# errors for Rick Ord's CSE 30.
+#
+# This script is a conglomeration of chco and chcr with specific changes made
+# for handling grading of the pamt assignments
+
+
+# Usage error message
+USAGE="USAGE: $0 <directory name>"
+
+# Make sure a directory was given from the command line
+if [ -z $1 ]; then
+
+  echo
+  echo "ERROR: No directory given!"
+  echo $USAGE
+  exit 1
+fi
+
+# Verify that the given directory is valid
+if [ ! -d $1 ]; then
+
+  printf "\nERROR: directory \"%s\" does not exist!\n" $1
+  exit 1
+fi
+
+dir_name=$1
+
+# First, run all the tests
+cd $dir_name
+
+for stu in *
+do
+
+  cd $stu
+  ./runTests
+  cd ..
+done
+
+cd ~
+
+# call the chco script for compiler errors first
+chco $dir_name
+
+echo -n "Continue? (y or n): "
+read response
+
+if [ $response == "n" ]; then
+
+  echo "Exiting..."
+  exit 0
+fi
+
+# Call the correctness script ness
+chcr $dir_name

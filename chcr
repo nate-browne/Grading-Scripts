@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author: Nate Browne
-# Date: May 14, 2018
+# Date: 14 May 2018
 # Version: 2.0
 # Script Name: chcr (CHeck CoRrectness)
 #
@@ -182,8 +182,18 @@ echo
 if [ $response == "y" ]; then
 
   echo "Opening files..."
-  gview -p cs30x*/test*.c
-  gview -p cs30x*/*.s
+
+  # Check if the assignment was a pamt or not
+  pamtcheck=`echo $dir_name | grep -c "pamt"`
+
+  if [ $pamtcheck -eq 0 ]; then
+
+    gview -p cs30x*/test*.c
+    gview -p cs30x*/*.s
+  else
+
+    gview -p cs30x*/README
+  fi
 
   echo -e "${RED}Don't forget to grade the other .c files as well!${NC}"
 else

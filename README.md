@@ -30,18 +30,22 @@ the name in. I find this more convenient for myself, personally.
 
 #### Descriptions
 
-The first script `chco` (**ch**eck **co**mpilation), is used to check for
+The first script, `chco` (**ch**eck **co**mpilation), is used to check for
 compilation errors/warnings. It goes through the grading directory, making sure
 that each user has an empty compilation error file and if a particular file has
 values, it will print out that file to you.
 
-The second script `chcr` (**ch**eck **c**o**r**rectness), is used to check the
+The second script, `chcr` (**ch**eck **c**o**r**rectness), is used to check the
 correctness of each student. It loops through, checking each student for failed
 test cases/other important output and will print it out to you. It will also
 prompt you to print the detailed results if you want them, but this can be
 silenced by using the `-s` command line option. (`-s` for *speedrun mode*).
 
-Lastly, the final script `fs`, will find a particular student that you give it.
+The third script, `pamtgrd`, is used for grading the pamt assignments. It calls
+the chco and chcr scripts, as well as runs the tests for you so that you don't
+have to type as much.
+
+Lastly, the final script, `fs`, will find a particular student that you give it.
 It can take both IDs and names, and is useful if you want to contact a student
 to reach out to them if they struggled. Not necessary at all though. Keep in
 mind that this script ***cannot be run on the pi-clusters***.
