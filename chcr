@@ -193,6 +193,7 @@ if [ $response == "y" ]; then
   else
 
     gview -p cs30x*/README
+    gview -p cs30x*/points.csv
   fi
 
   echo -e "${RED}Don't forget to grade the other .c files as well!${NC}"
