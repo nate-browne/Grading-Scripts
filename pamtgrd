@@ -64,4 +64,4 @@ fi
 echo "second: check for correctness"
 
 # Call the correctness script ness
-chcr $dir_name
+chcr -s $dir_name
