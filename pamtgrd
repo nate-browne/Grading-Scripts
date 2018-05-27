@@ -47,6 +47,8 @@ done
 
 cd ~
 
+echo "First: Checking compilation errors"
+
 # call the chco script for compiler errors first
 chco $dir_name
 
@@ -58,6 +60,8 @@ if [ $response == "n" ]; then
   echo "Exiting..."
   exit 0
 fi
+
+echo "second: check for correctness"
 
 # Call the correctness script ness
 chcr $dir_name
