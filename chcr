@@ -134,6 +134,7 @@ do
       less $stu/SUMMARY.RESULTS | grep "Milestone"
       less $stu/SUMMARY.RESULTS | grep "r4"
       less $stu/SUMMARY.RESULTS | grep "EC"
+      less $stu/SUMMARY.RESULTS | grep "Early"
     fi
   else
 
@@ -144,6 +145,7 @@ do
     less $stu/SUMMARY.RESULTS | grep "Milestone"
     less $stu/SUMMARY.RESULTS | grep "r4"
     less $stu/SUMMARY.RESULTS | grep "EC"
+      less $stu/SUMMARY.RESULTS | grep "Early"
   fi
 
   # Print detailed results (if needed)
