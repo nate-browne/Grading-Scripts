@@ -190,7 +190,7 @@ if [ $response == "y" ]; then
 
   if [ $pamtcheck -eq 0 ]; then
 
-    gview -p cs30x*/test*.c
+    gview -p cs30x*/*.c
     gview -p cs30x*/*.s
   else
 
@@ -198,10 +198,10 @@ if [ $response == "y" ]; then
     gview -p cs30x*/points.csv
   fi
 
-  echo -e "${RED}Don't forget to grade the other .c files as well!${NC}"
+  echo -e "${RED}Time to do style grading/README grading!${NC}"
 else
 
-  echo -e "${RED}Don't forget to grade the files for style!${NC}"
+  echo -e "${RED}Time to do style grading/README grading!${NC}"
 fi
 
 echo "Exiting..."
