@@ -192,6 +192,7 @@ if [ $response == "y" ]; then
 
     gview -p cs30x*/*.c
     gview -p cs30x*/*.s
+    gview -p cs30x*/README
   else
 
     gview -p cs30x*/README
