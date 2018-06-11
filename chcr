@@ -112,7 +112,7 @@ do
 
     echo -n "Student didn't fail any test cases!"
     echo -n " Do you still want to see summary results? (y/n/q): "
-    read response
+    read -n 1 response
     echo
 
     if [ $response == "q" ]; then
@@ -152,7 +152,7 @@ do
   if [ $showprompt == "y" ]; then
 
     echo -n "Do you want to see the detailed results? (y/n/q): "
-    read response
+    read -n 1 response
     echo
 
     if [ $response == "q" ]; then
@@ -177,8 +177,8 @@ done
 echo "Done!"
 
 # Ask if we want to start up gvim
-echo -n "Open the unit test files and assembly files in gvim? (y/n): "
-read response
+echo -n "Open the files in gview for style grading? (y/n): "
+read -n 1 response
 echo
 
 if [ $response == "y" ]; then
