@@ -7,10 +7,10 @@ while [ 1 -eq 1 ]; do
   cd ~/..
 
   # Grab name to search for
-  echo -n "Please enter a name: "
+  echo -n "Please enter a name or 'q' to quit: "
   read student
 
-  if [ $student -eq "quit" ]; then
+  if [ $student == "q" ]; then
 
     exit 0
   fi
