@@ -22,7 +22,7 @@ while [ 1 -eq 1 ]; do
   for name in *; do
 
     # Remove default non-student names
-    if [[ $name != "hold" ]] && [[ $name != "public" ]]; then
+    if [[ $name != "hold" ]] && [[ $name != "public" ]] && [[ $name != "'" ]]; then
 
       # Look for the given name in accounts
       result=`finger $name | grep -c "$student"`

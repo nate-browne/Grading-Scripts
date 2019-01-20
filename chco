@@ -61,7 +61,7 @@ do
   echo "Checking student $stu... (student #$currstu of $stucount)"
 
   # Check their COMPILER.ERR file for errors
-  result=`cat $stu/COMPILER.ERR | wc -l`
+  result=`cat $stu/COMPILE.ERR | wc -l`
 
   # Handle case of student having compiler errors. Increment count -> print to
   # grader
