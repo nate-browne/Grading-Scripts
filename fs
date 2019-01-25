@@ -3,10 +3,10 @@
 # A small script to help find students in the course that you are grading. Use
 # with caution. Cannot be run on the pi-clusters (no finger command)
 
-while [ 1 -eq 1 ]; do
+echo -n "Please enter a course (like cs30x): "
+read class
 
-  echo -n "Please enter a course (like cs30x): "
-  read class
+while [ 1 -eq 1 ]; do
 
   # Grab name to search for
   echo -n "Please enter a name or 'q' to quit: "
