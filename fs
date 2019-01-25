@@ -4,7 +4,9 @@
 # with caution. Cannot be run on the pi-clusters (no finger command)
 
 while [ 1 -eq 1 ]; do
-  cd ~/..
+
+  echo -n "Please enter a course (like cs30x): "
+  read class
 
   # Grab name to search for
   echo -n "Please enter a name or 'q' to quit: "
@@ -19,20 +21,13 @@ while [ 1 -eq 1 ]; do
   echo "Starting..."
   start=$(date +%s.%N)
 
-  for name in *; do
+  listclass $class | grep $student
 
-    # Remove default non-student names
-    if [[ $name != "hold" ]] && [[ $name != "public" ]] && [[ $name != "'" ]]; then
+  echo -n "Please enter a student to get more info from: "
+  read stuname
 
-      # Look for the given name in accounts
-      result=`finger $name | grep -c "$student"`
+  finger $stuname
 
-      # Print matches
-      if [ $result -ne 0 ]; then
-        finger $name
-      fi
-    fi
-  done
 
   # Stop the timer
   end=$(date +%s.%N)
