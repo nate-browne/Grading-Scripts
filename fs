@@ -23,12 +23,6 @@ while [ 1 -eq 1 ]; do
 
   listclass $class | grep $student
 
-  echo -n "Please enter a student to get more info from: "
-  read stuname
-
-  finger $stuname
-
-
   # Stop the timer
   end=$(date +%s.%N)
 
