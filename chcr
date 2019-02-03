@@ -24,6 +24,33 @@ HELP_MESSAGE="-h to show help options"
 NO_PROMPT="-s to speedrun the grading and not prompt to print detailed
             results"
 
+function linesOver80 {
+
+  for user in */; do
+    cd $user
+    echo "In user `pwd`"
+    addend_1=`grep '.\{81,\}' *.s | wc -l`
+    addend_2=`grep '.\{81,\}' *.c | wc -l`
+
+    res=$((addend_1 + addend_2))
+
+    if [ "$res" != "0" ]; then
+      grep -n '.\{81,\}' *.s
+      grep -n '.\{81,\}' *.c
+    else
+      echo "No lines over 80 chars"
+    fi
+
+    echo -n "Waiting to continue (q to quit): "
+    read -n 1 resp
+
+    if [ "$resp" == "q" ]; then
+      return
+    fi
+    cd ..
+    echo
+  done
+}
 # Go to the home directory
 cd ~
 
@@ -94,6 +121,9 @@ done
 
 # Initialize counter of current student
 currstu=0
+
+# call the lines over 80 script
+linesOver80
 
 for stu in *
 do
