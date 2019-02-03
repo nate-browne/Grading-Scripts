@@ -81,7 +81,7 @@ printf "Finished!\n\n"
 end=$(date +%s.%N)
 
 # In case nobody has errors :)
-if [ $numerrors -ne 0 ]; then
+if [ $numerrors -eq 0 ]; then
 
   echo "No errors!"
 else
