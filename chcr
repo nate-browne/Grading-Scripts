@@ -124,6 +124,7 @@ currstu=0
 
 # call the lines over 80 script
 linesOver80
+echo
 
 for stu in *
 do
