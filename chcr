@@ -51,6 +51,7 @@ function linesOver80 {
     echo
   done
 }
+
 # Go to the home directory
 cd ~
 
@@ -125,6 +126,8 @@ currstu=0
 # call the lines over 80 script
 linesOver80
 echo
+
+cd ~/$dir_name
 
 for stu in *
 do
